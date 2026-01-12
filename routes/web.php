@@ -44,4 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/dashboard', [ShortUrlController::class, 'store'])->name('dashboard.store');
 
     Route::get('/short_urls', [ShortUrlController::class, 'index'])->name('short_urls.index');
+    Route::get('/short_urls/{shortUrl}/edit', [ShortUrlController::class, 'edit'])->name('short_urls.edit');
+    Route::put('/short_urls/{shortUrl}', [ShortUrlController::class, 'update'])->name('short_urls.update');
+    Route::delete('/short_urls/{shortUrl}', [ShortUrlController::class, 'destroy'])->name('short_urls.destroy');
 });
