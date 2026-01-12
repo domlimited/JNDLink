@@ -19,9 +19,7 @@ use App\Http\Controllers\ShortUrlController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', '/login');
 
 Route::get('/login', [LoginController::class, 'loginForm'])->middleware('guest')->name('login');
 Route::post('/login', [LoginController::class, 'login'])->middleware('guest');
