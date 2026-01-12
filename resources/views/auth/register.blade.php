@@ -1,0 +1,43 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-header">สมัครสมาชิก</div>
+                <div class="card-body">
+                    <form method="POST" action="{{ route('register') }}">
+                        @csrf
+
+                        <div class="mb-3">
+                            <label for="name" class="form-label">ชื่อ</label>
+                            <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                            @error('name')<div class="text-danger small">{{ $message }}</div>@enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">อีเมล</label>
+                            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                            @error('email')<div class="text-danger small">{{ $message }}</div>@enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">รหัสผ่าน</label>
+                            <input id="password" type="password" class="form-control" name="password" required>
+                            @error('password')<div class="text-danger small">{{ $message }}</div>@enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password_confirmation" class="form-label">ยืนยันรหัสผ่าน</label>
+                            <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">สมัครสมาชิก</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
