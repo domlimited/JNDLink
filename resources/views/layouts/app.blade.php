@@ -16,6 +16,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('dashboard') }}">แดชบอร์ด</a>
                         </li>
+                        @if(auth()->user()->role === 'admin')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('short_urls.index') }}">จัดการลิงก์ทั้งหมด</a>
+                        </li>
+                        @endif
                         <li class="nav-item me-2">
                             <span class="nav-link">{{ auth()->user()->name }}</span>
                         </li>

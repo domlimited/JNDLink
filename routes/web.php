@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ShortUrlController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,11 @@ Route::post('/logout', function(Request $request) {
 Route::get('/register', [RegisterController::class, 'showRegisterForm'])->middleware('guest')->name('register');
 Route::post('/register', [RegisterController::class, 'register'])->middleware('guest');
 
+Route::get('/s/{code}', [ShortUrlController::class, 'redirect'])->name('short.redirect');
+
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::post('/dashboard', [ShortUrlController::class, 'store'])->name('dashboard.store');
+
+    Route::get('/short_urls', [ShortUrlController::class, 'index'])->name('short_urls.index');
 });
