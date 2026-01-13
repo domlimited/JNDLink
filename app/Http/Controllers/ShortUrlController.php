@@ -50,7 +50,7 @@ class ShortUrlController extends Controller
     public function edit(ShortUrl $shortUrl)
     {
         $user = Auth::user();
-        if ($user->role !== 'admin' && $shortUrl->user_id !== $user->id) {
+        if ($user->role !== 'admin') {
             abort(403, 'Unauthorized');
         }
         return view('short_urls.edit', compact('shortUrl'));
@@ -59,7 +59,7 @@ class ShortUrlController extends Controller
     public function update(Request $request, ShortUrl $shortUrl)
     {
         $user = Auth::user();
-        if ($user->role !== 'admin' && $shortUrl->user_id !== $user->id) {
+        if ($user->role !== 'admin') {
             abort(403, 'Unauthorized');
         }
         $request->validate([
@@ -73,7 +73,7 @@ class ShortUrlController extends Controller
     public function destroy(ShortUrl $shortUrl)
     {
         $user = Auth::user();
-        if ($user->role !== 'admin' && $shortUrl->user_id !== $user->id) {
+        if ($user->role !== 'admin') {
             abort(403, 'Unauthorized');
         }
         $shortUrl->delete();
